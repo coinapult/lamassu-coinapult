@@ -20,6 +20,11 @@
   "bugs": {
     "url": "https://github.com/coinapult/lamassu-coinapult/issues"
   },
+  "dependencies": {
+    "async": "~0.2.10",
+    "lodash": "^2.4.1",
+    "request": "~2.51.0"
+  },
   "readme": "lamassu-coinapult\n=================\n\nLamassu Coinapult Plugin\n",
   "readmeFilename": "README.md",
   "dependencies": {}
