@@ -1,6 +1,6 @@
 {
   "name": "lamassu-coinapult",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Lamassu Coinapult Plugin",
   "main": "main.js",
   "scripts": {
@@ -24,7 +24,6 @@
     "url": "https://github.com/coinapult/lamassu-coinapult/issues"
   },
   "devDependencies": {
-    "lodash": "^2.4.1",
     "chai": "^1.9.1",
     "mocha": "^1.21.4"
   },
@@ -32,8 +31,5 @@
     "async": "~0.2.10",
     "lodash": "^2.4.1",
     "request": "~2.51.0"
-  },
-  "readme": "lamassu-coinapult\n=================\n\nLamassu Coinapult Plugin\n",
-  "readmeFilename": "README.md",
-  "dependencies": {}
+  }
 }
