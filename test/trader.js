@@ -106,7 +106,7 @@ if (!process.env.TRAVIS) {
 
 	    data.transaction_id.should.be.a('string');
 	    data.timestamp.should.be.a('number');
-	    (data.in.expected).should.be.equal(minSize / 1e8);
+	    (data.out.expected).should.be.equal(minSize / 1e8);
 
             done();
           });
@@ -147,7 +147,7 @@ if (!process.env.TRAVIS) {
 
             data.transaction_id.should.be.a('string');
             data.timestamp.should.be.a('number');
-            (data.out.expected).should.be.equal(minSize / 1e8);
+            (data.in.expected).should.be.equal(minSize / 1e8);
 
             done();
           });
