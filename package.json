@@ -1,6 +1,6 @@
 {
   "name": "lamassu-coinapult",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Lamassu Coinapult Plugin",
   "main": "main.js",
   "scripts": {
