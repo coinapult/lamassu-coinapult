@@ -40,3 +40,29 @@ Now in the Wallet section present in lamassu-admin website, use your API key as 
 If you're using the trading functionality too, configure it with the same key pair:
 
 ![lamassu-admin screenshot for trading configuration](http://i.imgur.com/hvhAndj.png "Coinapult trading in lamassu-admin")
+
+
+lamassu-machine transaction display
+===================================
+
+This plugin returns a transaction id that differs from the one commonly produced by bitcoind, this id is produced by Coinapult and can be used to track the transaction. But lamassu-machine links to blockchain.info, which does not work with this Coinapult id. To workaround this, apply the following patch which always links to the address used during the transaction.
+
+Save the following as `address_url.patch` inside lamassu-machine and apply it by running `patch -p1 < address_url.patch`. It's expected that lamassu-machine is at the v0.2.15 tag (do `git checkout v0.2.15` while inside lamassu-machine).
+
+```
+diff --git a/lib/brain.js b/lib/brain.js
+index 013f1be..dd163d1 100644
+--- a/lib/brain.js
++++ b/lib/brain.js
+@@ -970,9 +970,7 @@ Brain.prototype._sendBitcoinsHandler =
+     function _sendBitcoinsHandler(transactionHash) {
+   this._setState('completed');
+ 
+-  var url = transactionHash ?
+-    'http://blockchain.info/tx/' + transactionHash :
+-    'http://blockchain.info/address/' + this.bitcoinAddress;
++  var url = 'http://blockchain.info/address/' + this.bitcoinAddress;
+   this.browser.send({
+     action: 'bitcoinTransferComplete',
+     transactionHashURL: url
+```
