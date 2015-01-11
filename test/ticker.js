@@ -1,7 +1,8 @@
-var should        = require('chai').should();
+var should = require('chai').should();
 
 var plugin = require('../main');
 var common = require('../lib/common');
+
 
 var currencies = Object.keys(common.TICKER_CURRENCIES);
 var testCurrencies = [];
