@@ -23,8 +23,10 @@ The current lamassu-admin does not list the Coinapult plugin, so you must update
 ```
 {
   "exchanges": {
-    "plugins": {"current": {"transfer": "coinapult"}},
-    "settings": {"coinapult": {}}
+    "plugins": {
+      "current": {"transfer": "coinapult"},
+      "settings": {"coinapult": {}}
+    }
   }
 }
 ```
