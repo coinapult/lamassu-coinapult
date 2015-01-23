@@ -85,6 +85,15 @@ if (!process.env.TRAVIS) {
         });
       });
 
+      it('should return a bitcoin address', function(done) {
+        plugin.newAddress({}, function(err, addy) {
+	  should.not.exist(err);
+
+	  addy.should.be.a('string');
+
+	  done();
+	});
+      });
     });
 
   });

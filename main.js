@@ -23,6 +23,7 @@ module.exports = {
   purchase: trader.purchase,
   /* Wallet dependencies. */
   sendBitcoins: wallet.sendBitcoins,
+  newAddress: wallet.newAddress,
   /* Trader and Wallet dependencies. */
   balance: common.balance
 }
