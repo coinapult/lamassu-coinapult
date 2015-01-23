@@ -94,6 +94,8 @@ describe(plugin.NAME + ' Ticker (' + testCurrencies.join(', ') + ')', function()
     // multiple supported currencies fetch
     it('should read ticker in ' + testCurrencies.join(', '), function(done) {
 
+      this.timeout(15000);
+
       plugin.ticker(testCurrencies, function(err, results) {
         should.not.exist(err, 'There should be no error');
         should.exist(results);
