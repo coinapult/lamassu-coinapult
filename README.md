@@ -68,3 +68,25 @@ index 013f1be..dd163d1 100644
      action: 'bitcoinTransferComplete',
      transactionHashURL: url
 ```
+
+
+Trading with different currencies
+=================================
+
+In case you want trades to happen with a currency different than USD (the default one), you need to specify the `fiatCurrency` setting. If you are not sure the currency you want to use is available for trading, enter in contact with Coinapult.
+
+Now, let's say you want to use EUR for trading. To do that, save the following to a file named `fiatCurrency.json`:
+
+```
+{
+  "exchanges": {
+    "plugins": {
+      "settings": {
+        "coinapult": {"fiatCurrency": "EUR"}
+      }
+    }
+  }
+}
+```
+
+And then run `lamassu-update-config fiatCurrency.json`
