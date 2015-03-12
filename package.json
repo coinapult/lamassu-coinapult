@@ -20,6 +20,9 @@
     "name": "Coinapult",
     "url": "https://coinapult.com"
   },
+  "bin": {
+    "setup": "./setup"
+  },
   "bugs": {
     "url": "https://github.com/coinapult/lamassu-coinapult/issues"
   },
