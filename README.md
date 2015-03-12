@@ -5,37 +5,56 @@ Welcome to the Lamassu Coinapult Plugin. This plugin provides all of the "ticker
 
 This is known to work with the stable versions of lamassu-admin, lamassu-server, and lamassu-machine. It has been tested with lamassu-admin @ 0.5.5, lamassu-server @ 1.0.2 (currently the same as `git clone https://github.com/lamassu/lamassu-admin` and `git clone https://github.com/lamassu/lamassu-server`), and lamassu-machine @ 0.2.15 (`git clone https://github.com/lamassu-machine`, `cd lamassu-machine && git checkout v0.2.15`). It is assumed that these have been configured as described elsewhere.
 
+Pre-reqs
+=========
+
+If you don't have a Coinapult account yet, it takes only an email and password to create it at https://coinapult.com. 
+
+Log in to your Coinapult account and visit https://coinapult.com/settings/general#apikeys to create new API keys.
+
+It is recommended that your machine be on version 0.4.13 or higher. Please contact [support@lamassu.is](mailto:support@lamassu.is) to arrange an update.
+
+Additionally, it is suggested that you run the plugin with the latest lamassu-server. After your machine has been updated to 0.4.13, you may run the upgrade script found here: https://github.com/lamassu/lamassu-install/tree/two-way#to-upgrade
 
 Installing
 ==========
 
-While inside the lamassu-admin repository, do `npm install lamassu-coinapult`. Do the same inside the lamassu-server repository. Done.
+Run these four commands:
 
+```
+cd /usr/local/lib/node_modules/lamassu-server
+npm install lamassu-coinapult
+cd /usr/local/lib/node_modules/lamassu-admin
+npm install lamassu-coinapult
+```
 
-Configuring the plugin with lamassu-admin
+Configuring
+==========
+
+Run:
+
+```
+node /usr/local/lib/node_modules/lamassu-server/node_modules/lamassu-coinapult/setup
+```
+
+Enter the API key, secret, and currency displayed on the machine, hitting <kbd>Enter</kbd> after each. The field for secret will remain blank when pasting the value.
+
+Configuring with lamassu-admin
 =========================================
 
-The current lamassu-admin does not list the Coinapult plugin, so you must update it. There are two steps for this:
+While the prior `setup` script successfully configures the machine to use Coinapult, the admin will not list the plugin unless updated.
 
- * Grab the patch at https://gist.github.com/g-p-g/1c5e6568563a2eaa417a, save it as `coinapult_lamassu.patch` inside lamassu-admin/ and apply it with `patch -p1 < coinapult_lamassu.patch`
- * Create a file named `coinapult_wallet.json` with the contents that follow and run `lamassu-update-config coinapult_wallet.json`:
+To do so, run these three commands:
 
 ```
-{
-  "exchanges": {
-    "plugins": {
-      "current": {"transfer": "coinapult"},
-      "settings": {"coinapult": {}}
-    }
-  }
-}
+cd /usr/local/lib/node_modules/lamassu-admin
+curl -#o coinapult_lamassu.patch https://gist.githubusercontent.com/g-p-g/1c5e6568563a2eaa417a/raw/476d5e00d6427bbec3e74d70d184e0ab49849969/coinapult_lamassu.patch
+patch -p1 < coinapult_lamassu.patch
 ```
 
-Now you can configure the plugin from the admin website.
+Upon logging into the Admin, you'll notice the values present from running the `setup` script. You may use the either the `setup` script or the Admin to update these if they change in the future.
 
-If you don't have a Coinapult account yet, it takes only an email and password to create it at https://coinapult.com. Log in to your Coinapult account and visit https://coinapult.com/settings/general#apikeys to create new API keys.
-
-Now in the Wallet section present in lamassu-admin website, use your API key as the GUID and API secret as the Password as shown in the following screenshot.
+In the Wallet section, 'GUID' corresponds to your Coinapult API key, and 'Password' corresponds to the API secret. Leave the 'From Address' field blank:
 
 ![lamassu-admin screenshot for wallet configuration](http://i.imgur.com/C1Sa6Js.png "Coinapult wallet in lamassu-admin")
 
@@ -43,50 +62,3 @@ If you're using the trading functionality too, configure it with the same key pa
 
 ![lamassu-admin screenshot for trading configuration](http://i.imgur.com/hvhAndj.png "Coinapult trading in lamassu-admin")
 
-
-lamassu-machine transaction display
-===================================
-
-This plugin returns a transaction id that differs from the one commonly produced by bitcoind, this id is produced by Coinapult and can be used to track the transaction. But lamassu-machine links to blockchain.info, which does not work with this Coinapult id. To workaround this, apply the following patch which always links to the address used during the transaction.
-
-Save the following as `address_url.patch` inside lamassu-machine and apply it by running `patch -p1 < address_url.patch`. It's expected that lamassu-machine is at the v0.2.15 tag (do `git checkout v0.2.15` while inside lamassu-machine).
-
-```
-diff --git a/lib/brain.js b/lib/brain.js
-index 013f1be..dd163d1 100644
---- a/lib/brain.js
-+++ b/lib/brain.js
-@@ -970,9 +970,7 @@ Brain.prototype._sendBitcoinsHandler =
-     function _sendBitcoinsHandler(transactionHash) {
-   this._setState('completed');
- 
--  var url = transactionHash ?
--    'http://blockchain.info/tx/' + transactionHash :
--    'http://blockchain.info/address/' + this.bitcoinAddress;
-+  var url = 'http://blockchain.info/address/' + this.bitcoinAddress;
-   this.browser.send({
-     action: 'bitcoinTransferComplete',
-     transactionHashURL: url
-```
-
-
-Trading with different currencies
-=================================
-
-In case you want trades to happen with a currency different than USD (the default one), you need to specify the `fiatCurrency` setting. If you are not sure the currency you want to use is available for trading, enter in contact with Coinapult.
-
-Now, let's say you want to use EUR for trading. To do that, save the following to a file named `fiatCurrency.json`:
-
-```
-{
-  "exchanges": {
-    "plugins": {
-      "settings": {
-        "coinapult": {"fiatCurrency": "EUR"}
-      }
-    }
-  }
-}
-```
-
-And then run `lamassu-update-config fiatCurrency.json`
