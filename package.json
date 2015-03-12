@@ -1,6 +1,6 @@
 {
   "name": "lamassu-coinapult",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Lamassu Coinapult Plugin",
   "main": "main.js",
   "scripts": {
@@ -30,6 +30,8 @@
   "dependencies": {
     "async": "~0.2.10",
     "lodash": "^2.4.1",
-    "request": "~2.51.0"
+    "request": "~2.51.0",
+    "promptly": "~0.2.0",
+    "lamassu-config": "~1.0.0"
   }
 }
