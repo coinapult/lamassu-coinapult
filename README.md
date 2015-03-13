@@ -37,6 +37,8 @@ node /usr/local/lib/node_modules/lamassu-server/node_modules/lamassu-coinapult/s
 
 Enter the API key, API secret, and currency displayed on the machine, hitting <kbd>Enter</kbd> after each. The field for secret will remain blank when pasting the value.
 
+When complete, you'll see 'Success' and the machine will begin to use Coinapult as ticker, wallet, and trader.
+
 Configuring with lamassu-admin
 =========================================
 
