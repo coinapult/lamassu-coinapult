@@ -1,9 +1,7 @@
 lamassu-coinapult
 =================
 
-Welcome to the Lamassu Coinapult Plugin. This plugin provides all of the "ticker", "trader", and "wallet" functionalities by using Coinapult services. The "trader" functionality requires further user permissions to use and you should enter in contact with Coinapult to use it.
-
-This is known to work with the stable versions of lamassu-admin, lamassu-server, and lamassu-machine. It has been tested with lamassu-admin @ 0.5.5, lamassu-server @ 1.0.2 (currently the same as `git clone https://github.com/lamassu/lamassu-admin` and `git clone https://github.com/lamassu/lamassu-server`), and lamassu-machine @ 0.2.15 (`git clone https://github.com/lamassu-machine`, `cd lamassu-machine && git checkout v0.2.15`). It is assumed that these have been configured as described elsewhere.
+Welcome to the Lamassu Coinapult Plugin. This plugin provides all of the "ticker", "trader", and "wallet" functionalities by using Coinapult services.
 
 Pre-reqs
 =========
@@ -14,7 +12,7 @@ Log in to your Coinapult account and visit https://coinapult.com/settings/genera
 
 It is recommended that your machine be on version 0.4.13 or higher. Please contact [support@lamassu.is](mailto:support@lamassu.is) to arrange an update.
 
-Additionally, it is suggested that you run the plugin with the latest lamassu-server. After your machine has been updated to 0.4.13, you may run the upgrade script found here: https://github.com/lamassu/lamassu-install/tree/two-way#to-upgrade
+Additionally, it is suggested that you run the plugin with the latest lamassu-server. After your machine has been updated to 0.4.13, you may run the server upgrade script found here: https://github.com/lamassu/lamassu-install/tree/two-way#to-upgrade
 
 Installing
 ==========
@@ -37,7 +35,7 @@ Run:
 node /usr/local/lib/node_modules/lamassu-server/node_modules/lamassu-coinapult/setup
 ```
 
-Enter the API key, secret, and currency displayed on the machine, hitting <kbd>Enter</kbd> after each. The field for secret will remain blank when pasting the value.
+Enter the API key, API secret, and currency displayed on the machine, hitting <kbd>Enter</kbd> after each. The field for secret will remain blank when pasting the value.
 
 Configuring with lamassu-admin
 =========================================
@@ -56,9 +54,9 @@ Upon logging into the Admin, you'll notice the values present from running the `
 
 In the Wallet section, 'GUID' corresponds to your Coinapult API key, and 'Password' corresponds to the API secret. Leave the 'From Address' field blank:
 
-![lamassu-admin screenshot for wallet configuration](http://i.imgur.com/C1Sa6Js.png "Coinapult wallet in lamassu-admin")
+![lamassu-admin screenshot for wallet configuration](http://i.imgur.com/WPG0KPM.png "Coinapult wallet in lamassu-admin")
 
-If you're using the trading functionality too, configure it with the same key pair:
+In Trading, ID is unused. The API key and secret values are the same as above:
 
-![lamassu-admin screenshot for trading configuration](http://i.imgur.com/hvhAndj.png "Coinapult trading in lamassu-admin")
+![lamassu-admin screenshot for trading configuration](http://i.imgur.com/xP8TMLq.png "Coinapult trading in lamassu-admin")
 
