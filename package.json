@@ -1,6 +1,6 @@
 {
   "name": "lamassu-coinapult",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Lamassu Coinapult Plugin",
   "main": "main.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "url": "https://coinapult.com"
   },
   "bin": {
-    "setup": "./setup"
+    "coinapult-setup": "./setup"
   },
   "bugs": {
     "url": "https://github.com/coinapult/lamassu-coinapult/issues"
